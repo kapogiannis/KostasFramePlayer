@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="el">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>KostasFramePlayer — PWA</title>
+<link rel="manifest" href="manifest.json">
+<meta name="theme-color" content="#2563eb">
+<script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100 text-gray-900">
+<div class="max-w-3xl mx-auto p-4">
+  <h1 class="text-2xl font-semibold mb-3">🎬 KostasFramePlayer (PWA)</h1>
+  <p class="text-sm text-gray-600 mb-4">Αναπαραγωγή βίντεο καρέ-καρέ — offline εφαρμογή</p>
+
+  <div class="flex flex-wrap gap-2 mb-3">
+    <input id="fileInput" type="file" accept="video/*" class="hidden">
+    <button id="openButton" class="px-3 py-2 rounded-xl bg-blue-500 text-white hover:bg-blue-600">Άνοιγμα Βίντεο</button>
+    <button id="playPauseButton" class="px-3 py-2 rounded-xl bg-green-500 text-white hover:bg-green-600">Αναπαραγωγή</button>
+    <button id="prevFrameButton" class="px-3 py-2 rounded-xl bg-gray-300 hover:bg-gray-400">⏪ Προηγούμενο</button>
+    <button id="nextFrameButton" class="px-3 py-2 rounded-xl bg-gray-300 hover:bg-gray-400">Επόμενο ⏩</button>
+    <button id="saveFrameButton" class="px-3 py-2 rounded-xl bg-purple-500 text-white hover:bg-purple-600">💾 Αποθήκευση Καρέ</button>
+  </div>
+
+  <div class="flex items-center gap-3 mb-3 flex-wrap">
+    <label>FPS: <input id="fpsInput" type="number" value="30" min="1" class="border rounded-md px-2 py-1 w-20"></label>
+    <div id="fpsInfo" class="text-sm text-gray-600">FPS: —</div>
+    <div id="timeInfo" class="text-sm font-mono">00:00.000</div>
+  </div>
+
+  <canvas id="canvas" class="w-full rounded-2xl shadow-lg bg-black"></canvas>
+</div>
+
+<video id="video" style="display:none"></video>
+
+<script>
+if ('serviceWorker' in navigator) {
+  navigator.serviceWorker.register('service-worker.js');
+}
+</script>
+</body>
+</html>
